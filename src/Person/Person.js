@@ -3,9 +3,12 @@ import React from 'react';
 const person = props => {
   console.log(props);
   return (
-    <p>
-      I'm {props.name} and I am {props.age}!
-    </p>
+    <div>
+      <p>
+        I'm {props.name} and I am {props.age}!
+      </p>
+      <p>{props.children}</p>
+    </div>
   );
 };
 
