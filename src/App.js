@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-
 import Person from './Person/Person';
 
 class App extends Component {
@@ -36,11 +35,22 @@ class App extends Component {
   };
 
   render() {
+    const styleButton = {
+      backgroundColor: 'PaleGreen',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor: 'pointer',
+      borderRadius: '10px',
+    };
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p>This is really working!</p>
-        <button onClick={() => this.switchNameHandler('Christopher!!!!!!')}>
+        <button
+          style={styleButton}
+          onClick={() => this.switchNameHandler('Christopher!!!!!!')}
+        >
           Switch Name
         </button>
         <Person person={this.state.persons[0]} />
