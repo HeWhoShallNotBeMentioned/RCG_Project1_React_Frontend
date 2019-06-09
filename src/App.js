@@ -12,12 +12,12 @@ class App extends Component {
     otherState: 'some other value',
   };
 
-  switchNameHandler = () => {
+  switchNameHandler = newName => {
     // console.log('Was clicked!');
     // DON'T DO THIS: this.state.persons[0].name = 'Maximilian';
     this.setState({
       persons: [
-        { name: 'Christopher', age: 50 },
+        { name: newName, age: 50 },
         { name: 'Melanie', age: 42 },
         { name: 'Lily', age: 16 },
       ],
@@ -29,10 +29,15 @@ class App extends Component {
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p>This is really working!</p>
-        <button onClick={this.switchNameHandler}>Switch Name</button>
+        <button onClick={() => this.switchNameHandler('Christopher!!!!!!')}>
+          Switch Name
+        </button>
         <Person person={this.state.persons[0]} />
         <Person person={this.state.persons[1]}>I like reading.</Person>
-        <Person person={this.state.persons[2]} />
+        <Person
+          person={this.state.persons[2]}
+          click={this.switchNameHandler.bind(this, 'CHRIS!')}
+        />
       </div>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
