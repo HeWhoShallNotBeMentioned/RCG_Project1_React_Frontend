@@ -49,6 +49,22 @@ class App extends Component {
       cursor: 'pointer',
       borderRadius: '10px',
     };
+
+    let persons = null;
+
+    if (this.state.showPersons) {
+      persons = (
+        <div>
+          <Person person={this.state.persons[0]} />
+          <Person person={this.state.persons[1]}>I like reading.</Person>
+          <Person
+            person={this.state.persons[2]}
+            click={this.switchNameHandler.bind(this, 'CHRIS!')}
+            changed={this.nameChangedHandler}
+          />
+        </div>
+      );
+    }
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
@@ -56,17 +72,7 @@ class App extends Component {
         <button style={styleButton} onClick={this.togglePersonsHandler}>
           Toggle Persons
         </button>
-        {this.state.showPersons ? (
-          <div>
-            <Person person={this.state.persons[0]} />
-            <Person person={this.state.persons[1]}>I like reading.</Person>
-            <Person
-              person={this.state.persons[2]}
-              click={this.switchNameHandler.bind(this, 'CHRIS!')}
-              changed={this.nameChangedHandler}
-            />
-          </div>
-        ) : null}
+        {persons}
       </div>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
