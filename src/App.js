@@ -55,13 +55,9 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = (
         <div>
-          <Person person={this.state.persons[0]} />
-          <Person person={this.state.persons[1]}>I like reading.</Person>
-          <Person
-            person={this.state.persons[2]}
-            click={this.switchNameHandler.bind(this, 'CHRIS!')}
-            changed={this.nameChangedHandler}
-          />
+          {this.state.persons.map(person => {
+            return <Person name={person.name} age={person.age} />;
+          })}
         </div>
       );
     }
@@ -75,8 +71,19 @@ class App extends Component {
         {persons}
       </div>
     );
-    // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
   }
 }
 
 export default App;
+
+{
+  /* <Person person={this.state.persons[0]} />
+          <Person person={this.state.persons[1]}>I like reading.</Person>
+          <Person
+            person={this.state.persons[2]}
+            click={this.switchNameHandler.bind(this, 'CHRIS!')}
+            changed={this.nameChangedHandler}
+          /> */
+}
+
+// return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
