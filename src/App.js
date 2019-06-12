@@ -5,34 +5,41 @@ import Person from './Person/Person';
 class App extends Component {
   state = {
     persons: [
-      { id: '1', name: 'Chris', age: 50 },
-      { id: '2', name: 'Melanie', age: 42 },
-      { id: '3', name: 'Monty', age: 17 },
+      { id: '84', name: 'Chris', age: 50 },
+      { id: '27', name: 'Melanie', age: 42 },
+      { id: '31', name: 'Monty', age: 17 },
     ],
     otherState: 'some other value',
     showPersons: false,
   };
 
-  switchNameHandler = newName => {
-    // console.log('Was clicked!');
-    // DON'T DO THIS: this.state.persons[0].name = 'Maximilian';
-    this.setState({
-      persons: [
-        { name: newName, age: 50 },
-        { name: 'Melanie', age: 42 },
-        { name: 'Lily', age: 16 },
-      ],
-    });
-  };
+  // switchNameHandler = newName => {
+  //   // console.log('Was clicked!');
+  //   // DON'T DO THIS: this.state.persons[0].name = 'Maximilian';
+  //   this.setState({
+  //     persons: [
+  //       { name: newName, age: 50 },
+  //       { name: 'Melanie', age: 42 },
+  //       { name: 'Lily', age: 16 },
+  //     ],
+  //   });
+  // };
 
-  nameChangedHandler = event => {
-    this.setState({
-      persons: [
-        { name: 'Chris', age: 50 },
-        { name: 'Melanie', age: 42 },
-        { name: event.target.value, age: 16 },
-      ],
+  nameChangedHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex(per => {
+      return per.id === id;
     });
+
+    const person = {
+      ...this.state.persons[personIndex],
+    };
+
+    person.name = event.target.value;
+
+    const persons = [...this.state.persons];
+
+    persons[personIndex] = person;
+    this.setState({ persons: persons });
   };
 
   deletePersonHandler = personIndex => {
@@ -68,6 +75,7 @@ class App extends Component {
                 age={person.age}
                 click={() => this.deletePersonHandler(index)}
                 key={person.id}
+                changed={event => this.nameChangedHandler(event, person.id)}
               />
             );
           })}
