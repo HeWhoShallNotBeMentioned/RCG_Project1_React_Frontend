@@ -55,12 +55,13 @@ class App extends Component {
 
   render() {
     const styleButton = {
-      backgroundColor: 'PaleGreen',
+      backgroundColor: 'green',
+      color: 'white',
       font: 'inherit',
-      border: '1px solid blue',
+      border: '1px solid grey',
       padding: '8px',
       cursor: 'pointer',
-      borderRadius: '10px',
+      // borderRadius: '10px',
     };
 
     let persons = null;
@@ -81,6 +82,7 @@ class App extends Component {
           })}
         </div>
       );
+      styleButton.backgroundColor = 'red';
     }
     return (
       <div className="App">
