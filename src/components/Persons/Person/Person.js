@@ -3,12 +3,7 @@ import React from 'react';
 import classes from './Person.css';
 
 const person = props => {
-  const rnd = Math.random();
-
-  if (rnd > 0.7 ) {
-    throw new Error('Something went so very wrong!!!!')
-  }
-
+  console.log(props);
   return (
     <div className={classes.Person}>
       <p onClick={props.click}>
