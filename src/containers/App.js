@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Classes from './App.css';
 import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
   state = {
@@ -12,18 +13,6 @@ class App extends Component {
     otherState: 'some other value',
     showPersons: false,
   };
-
-  // switchNameHandler = newName => {
-  //   // console.log('Was clicked!');
-  //   // DON'T DO THIS: this.state.persons[0].name = 'Maximilian';
-  //   this.setState({
-  //     persons: [
-  //       { name: newName, age: 50 },
-  //       { name: 'Melanie', age: 42 },
-  //       { name: 'Lily', age: 16 },
-  //     ],
-  //   });
-  // };
 
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(per => {
@@ -55,37 +44,24 @@ class App extends Component {
 
   render() {
     let persons = null;
-    let btnClass = '';
 
     if (this.state.showPersons) {
       persons = (
-        <div>
-          <Persons
-            persons={this.state.persons}
-            clicked={this.deletePersonHandler}
-            changed={this.nameChangedHandler}
-          />
-        </div>
+        <Persons
+          persons={this.state.persons}
+          clicked={this.deletePersonHandler}
+          changed={this.nameChangedHandler}
+        />
       );
-      btnClass = Classes.Red;
-    }
-
-    const classes = [];
-    if (this.state.persons.length <= 2) {
-      classes.push(Classes.red);
-    }
-
-    if (this.state.persons.length <= 1) {
-      classes.push(Classes.bold);
     }
 
     return (
       <div className={Classes.App}>
-        <h1>Hi, I'm a React App</h1>
-        <p className={classes.join(' ')}> This is really working!</p>
-        <button className={btnClass} onClick={this.togglePersonsHandler}>
-          Toggle Persons
-        </button>
+        <Cockpit
+          showPersons={this.state.showPersons}
+          clicked={this.togglePersonsHandler}
+          persons={this.state.persons}
+        />
         {persons}
       </div>
     );
